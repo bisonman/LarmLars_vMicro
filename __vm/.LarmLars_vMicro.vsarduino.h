@@ -10,7 +10,6 @@
 
 #define __AVR_ATmega328p__
 #define __AVR_ATmega328P__
-#define _VMDEBUG 1
 #define ARDUINO 106012
 #define ARDUINO_MAIN
 #define F_CPU 16000000L
@@ -19,14 +18,14 @@
 #define ARDUINO 106012
 #define ARDUINO_AVR_PRO
 #define ARDUINO_ARCH_AVR
- #include <VM_DBG.h>
 
 void switchInterrupt();
 //
-void visaInformation();
-void flashGreenLED();
+void showInformation();
+void flashGreenLED(int n);
+void flashRedLED(int n);
 void handleRemoteController();
-void handleSecondAction();
+void handleSecondChangeAction();
 //
 
 #include "pins_arduino.h" 
