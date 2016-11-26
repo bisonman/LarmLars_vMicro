@@ -24,30 +24,27 @@ RC5 rc5(5);
 
 int maxTime = 1;					// Ställer in Larmtimeout * TIMEOuT_STEPS i antal sekunder
 int EEPROM_AdrMaxTime = 0;          // Adress i EEPROM där "maxTime" lagras
-int EEPROM_AdrPowerOnStatus = 2;    // Adress i EEPROM där flagga som sätter auto power vid boot
+int EEPROM_AdrPowerOnStatus = 2;    // Adress i EEPROM där flagga som styr "auto power on" vid boot
 
-//#####  Status flags
+//#####  Status flaggor
 boolean FlagPowerOn = false;
 boolean FlagFlashRedLED = false;
 boolean FlagSwitch = false;
-//## boolean switchStatus = false;
 boolean FlagGreenLed = false;
 boolean FlagRedLed = false;
 boolean FlagRelay = false;
 boolean FlagLarm = false;
-//## boolean FlagTimeOverflow = false;
 
 int Second = 0;
 int oldSecond = 0;
 unsigned char oldToggle = 0;		// Används vid fjärrkontroll avläsning
 
-unsigned long TimeLarm = 0;         // avläsning av millis() vid larm
+unsigned long TimeLarm = 0;         // Spara millis() vid aktivering av larm
 unsigned long TimeLarmTimeout = 0;  // Hur lång tid reläet skall vara aktiverat vid larm
-
 
 //**********************************************************
 void
-switchInterrupt()
+sensorInterrupt()
 {
 	FlagSwitch = true;
   
@@ -80,7 +77,7 @@ setup()
   
 	Serial.begin(115200);
 	pinMode(INTERRUPT_PIN, INPUT_PULLUP);
-	attachInterrupt(digitalPinToInterrupt(INTERRUPT_PIN), switchInterrupt, FALLING);
+	attachInterrupt(digitalPinToInterrupt(INTERRUPT_PIN), sensorInterrupt, FALLING);
 
 	pinMode(GREEN_LED_PIN, OUTPUT);
 	pinMode(RED_LED_PIN, OUTPUT);

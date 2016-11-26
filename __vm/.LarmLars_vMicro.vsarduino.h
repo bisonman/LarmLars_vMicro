@@ -19,7 +19,7 @@
 #define ARDUINO_AVR_PRO
 #define ARDUINO_ARCH_AVR
 
-void switchInterrupt();
+void sensorInterrupt();
 //
 void showInformation();
 void flashGreenLED(int n);
